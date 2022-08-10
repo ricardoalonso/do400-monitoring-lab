@@ -34,7 +34,7 @@ pipeline {
                 '''
                 sh '''
                     ./scripts/check-job-state.sh "calculator-trivy" \
-                    "RHT_OCP4_DEV_USER-monitoring-lab"
+                    "buzemo-monitoring-lab"
                 '''
             }
         }
