@@ -21,6 +21,15 @@ pipeline {
                 '''
             }
         }
+        stage('Deploy') {
+            steps {
+                sh '''
+                    ./scripts/redeploy.sh \
+                    -d calculator \
+                    -n buzemo-monitoring-lab
+                '''
+            }
+        }
     }
     post {
         failure {
