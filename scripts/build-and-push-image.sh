@@ -11,7 +11,7 @@ do
 done
 
 ./mvnw package -DskipTests \
-  -Dquarkus.jib.base-jvm-image=registry.redhat.io/openjdk/openjdk-11-rhel7:latest \
+  -Dquarkus.jib.base-jvm-image=registry.access.redhat.com/openjdk/openjdk-11-rhel7:latest \
   -Dquarkus.container-image.build=true \
   -Dquarkus.container-image.registry=quay.io \
   -Dquarkus.container-image.group="${quay_user}" \
