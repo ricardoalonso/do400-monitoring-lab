@@ -21,6 +21,23 @@ pipeline {
                 '''
             }
         }
+        stage('Security Scan') {
+            steps {
+                sh '''
+                    oc process -f kubefiles/security-scan-template.yml \
+                    -n buzemo-monitoring-lab \
+                    -p QUAY_USER=ricardoalonsos \
+                    -p QUAY_REPOSITORY=do400-monitoring-lab \
+                    -p APP_NAME=calculator \
+                    | oc replace --force \
+                    -n buzemo-monitoring-lab -f -
+                '''
+                sh '''
+                    ./scripts/check-job-state.sh "calculator-trivy" \
+                    "RHT_OCP4_DEV_USER-monitoring-lab"
+                '''
+            }
+        }
         stage('Deploy') {
             steps {
                 sh '''
